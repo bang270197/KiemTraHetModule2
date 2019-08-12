@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/}">Back List</a>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: crimson"></p>
+</th:block>
+<form th:action="@{/create-city}" th:object="${city}" method="post">
+    <table cellpadding="1" cellspacing="1" border="1px" style="text-align: center">
+        <tr>
+            <td>TenThanhPho</td>
+            <td><input type="text" th:field="*{tenTp}"></td>
+        </tr>
+        <tr>
+            <td>DienTich</td>
+            <td><input type="text" th:field="*{dienTich}"></td>
+        </tr>
+        <tr>
+            <td>DanSo</td>
+            <td><input type="text" th:field="*{danSo}"></td>
+        </tr>
+        <tr>
+            <td>GDP</td>
+            <td><input type="text" th:field="*{GDP}"></td>
+        </tr>
+        <tr>
+            <td>MoTa</td>
+            <td><textarea th:field="*{moTa}" cols="30" rows="8"></textarea></td>
+        </tr>
+        <tr>
+            <td>QuocGIa</td>
+            <td><select th:field="*{nation}">
+                <option th:each="n: ${ListNation}"
+                th:value="${n.id}"
+                        th:text="${n.name}"
+                ></option>
+            </select></td>
+        </tr>
+        <tr>
+            <td colspan="2"><input type="submit" value="save"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/}">Back List</a>
+<h3>Sua Thong Tin Thanh Pho</h3>
+<th:block th:if="${message}">
+    <p th:text="${message}" style="color: crimson"></p>
+</th:block>
+<form th:action="@{/edit-city}" th:object="${city}" method="post">
+    <input type="hidden" th:field="*{id}">
+    <table cellspacing="1" cellpadding="1" border="1px" style="text-align: center">
+        <tr>
+            <td>TenThanhPho</td>
+            <td><input type="text" th:field="*{tenTp}"></td>
+        </tr>
+        <tr>
+            <td>DienTich</td>
+            <td><input type="text" th:field="*{dienTich}"></td>
+        </tr>
+        <tr>
+            <td>DanSo</td>
+            <td><input type="text" th:field="*{danSo}"></td>
+        </tr>
+        <tr>
+            <td>GDP</td>
+            <td><input type="text" th:field="*{GDP}"></td>
+        </tr>
+        <tr>
+            <td>MoTa</td>
+            <td><textarea cols="30" rows="8" th:field="*{moTa}"></textarea></td>
+        </tr>
+        <tr>
+            <td>QuocGia</td>
+            <td>
+                <select name="nation">
+                    <option th:each="n: ${ListNation}"
+                    th:value="${n.id}"
+                            th:text="${n.name}"
+                            th:selected="${n.id}==*{nation.id}"
+                    ></option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="edit">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

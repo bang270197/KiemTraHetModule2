@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a th:href="@{/show-create}">Them Thanh Pho</a>
+<h3>Danh Sach Thanh Pho</h3>
+
+<table  border="1px" style="text-align:center">
+    <tr>
+        <td>#</td>
+        <td>TenThanhPho</td>
+        <td>QuocGia</td>
+        <td>ThietLap</td>
+    </tr>
+    <tr th:each="c :${city}">
+        <td th:text="${c.id}"></td>
+        <td th:text="${c.tenTp}"></td>
+        <td th:text="${c.nation.name}"></td>
+        <td><a th:href="@{/show-view/__${c.getId()}__}">view</a>|
+            <a th:href="@{/show-edit/__${c.getId()}__}">edit</a>|
+            <a th:href="@{/show-delete/__${c.getId()}__}">delete</a>
+        </td>
+    </tr>
+</table>
+<div>
+    <a th:href="@{'/'(page=${city.number -1})}" th:if="${city.hasPrevious()}">Previous</a>
+    <span th:text="${city.number+1}"></span>|<span th:text="${city.totalPages}"></span>
+    <a th:href="@{'/'(page=${city.number+1})}" th:if="${city.hasNext()}">Next</a>
+</div>
+</body>
+</html>
